@@ -1,0 +1,3 @@
+# A little bit about me...
+
+I'm Kelly Mack, a student at the University of Illinois at Urbana-Champaign majoring in Computer Science with minors in Business and Mathematics. I love to learn and try new things.
