@@ -1,3 +1,13 @@
 theme: jekyll-theme-slate
 title: Welcome to my site!
 description: Here is a little bit about me.
+
+defaults:
+  # _docs
+  - scope:
+      path: ""
+      type: docs
+    values:
+      sidebar:
+        nav: "docs"
+
