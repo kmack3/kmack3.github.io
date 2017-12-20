@@ -299,10 +299,10 @@ ul li {
 
 .banner {
 	background-color: #65349c;
-	min-height: 750px;
+	min-height: 150px;
 }
 .banner-text {
-	padding-top: 28%;
+	padding-top: 20%;
 }
 .banner-text h1 {
 	color: #fff;
