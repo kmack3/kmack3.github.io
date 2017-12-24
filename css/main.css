@@ -312,6 +312,7 @@ ul li {
 	font-weight: 700;
 }
 .banner-text p {
+	float:left;
 	color: #fff;
 	font-size: 19px;
 	font-weight: 400;
@@ -322,8 +323,8 @@ ul li {
 }
 .banner-text img {
 	float:right;
-	width:50%;
-	height:50%;
+	width:25%;
+	height:25%;
 }
 /* ------------------------------------------------------------------------------
 	Description Text
