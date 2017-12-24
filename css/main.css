@@ -141,7 +141,7 @@ ul li {
 	transition: opacity 0.5s;
 }
 .navigation {
-	float: right;
+	float: left;
 }
 .navigation li {
 	display: inline-block;
