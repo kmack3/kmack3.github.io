@@ -139,7 +139,7 @@ footer {
   font-size: 1.5em;
 }
 
-/*body, main { background-color:orange; }              /* For testing only */*/
+/*body, main { background-color:orange; }              /* For testing only */
 
 
 
@@ -147,7 +147,7 @@ footer {
 /* -------------------- Tablet Screen ---------------------- */
   @media all and (min-width:651px) { 
     /* ---------------------- Styles ----------------------- */
-      /*body, main { background-color:green; }              /* For testing only */*/
+      /*body, main { background-color:green; }              /* For testing only */
 
       .mobile_picture {
         display: none;
@@ -214,7 +214,7 @@ footer {
 /* -------------------- Desktop Screen --------------------- */
   @media all and (min-width:1026px) {  
     /* ---------------------- Styles ----------------------- */
-      /*body, main { background-color:blue; }              /* For testing only */*/
+      /*body, main { background-color:blue; }              /* For testing only */
 
       p, dl, li {
         font-size: 1em;           /* going from a large screen to a small screen, this "increases" the size of text as the screen size shrinks */
