@@ -1,0 +1,222 @@
+/* --------------- Misc. info --------------------- */
+/*   
+    Page breaks at 0 to 650px, 651px to 1025px, 1026px to max width. 
+*/
+/* -------------------- Mobile Screen ---------------------- */
+/* ---------------------- Styles ---------------------- */
+
+html, body, h1, h2, h3, h4, h5, h6 {
+   margin: 0;
+   padding: 0;
+   font-size: 100%;
+   line-height: 1.45;
+   font-family: Arial, Helvetica, sans-serif;
+}
+p {
+   padding: 0;
+   margin: 1em 2em 1.5em;   
+   font-size: 1.5em;       /* increase size of font as screen size shrinks */
+}
+
+li {
+  font-size: 1.5em;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, section, body {
+  display: block;
+  background-color: #ededed;
+} 
+
+main, hearder {
+    margin: 1em; /* Same as the width of the sidenav */
+    padding: 0em 1em;
+}
+
+h1 {
+  font-size: 2.441em;
+  color: #ededed;
+}
+
+h2 {
+  padding-top: 1em;
+  font-size: 1.953em;
+  border-bottom-style: solid;
+  border-bottom-color: #3c2363;
+}
+
+h3 {
+  margin: 1em 1.5em .5em;   
+  font-size: 1.563em;
+}
+
+.sidenav a {
+  display:none;
+}
+
+.me_picture {
+  display: none;
+}
+
+.center {
+  text-align: center;
+}
+
+.mobile_picture {
+  height: 12em;
+  width: 12em;
+  margin: 1em; /* Same as the width of the sidenav */
+}
+
+/*                               Navigation                     */
+#mobile_nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#mobile_nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1em 1.5em;
+    text-decoration: none;
+}
+
+#mobile_nav li a:hover {
+    background-color: #503482;
+}
+
+#mobile_nav li a:focus {
+    background-color: #503482;
+}
+
+
+#mobile_nav {
+  display: block;
+  background-color: #111;
+  margin-left:auto; 
+  margin-right:auto;
+  padding-bottom: 40em;   /*      adding bottom padding to make nav menu seem like own page per step 3 feedback       */
+}
+
+#nav_button {
+  display: block;
+  float: right;
+  width: 10%;
+  height: auto;
+  margin-right: .5em;
+  margin-top: .5em;
+}
+
+/*                              Header Styles                        */
+
+header {
+  background-color: #3c2363;
+}
+
+
+.main_title {
+    text-align: center;
+    margin-left:auto; 
+    margin-right:auto;
+    padding-top: 1em;
+}
+
+
+/*                          Footer Styles                        */
+
+footer {
+  text-align: center;
+  background-color: #3c2363;
+  color: #ededed;
+  margin-bottom: 30em;    /*    Creating more space so the navigation seems like it's on another page, per step 2 feedback    */
+}
+
+.foot_div {
+  padding-top: .5em;
+  padding-bottom: .5em;
+  font-size: 1.5em;
+}
+
+/*body, main { background-color:orange; }              /* For testing only */*/
+
+
+
+
+/* -------------------- Tablet Screen ---------------------- */
+  @media all and (min-width:651px) { 
+    /* ---------------------- Styles ----------------------- */
+      /*body, main { background-color:green; }              /* For testing only */*/
+
+      .mobile_picture {
+        display: none;
+      }
+
+      .sidenav {
+          height: 100%;
+          width: 15em;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          background-color: #111;
+          overflow-x: hidden;
+          padding-top: 2em;
+      }
+
+      .sidenav a {
+          padding: .5em 1em .5em 1em;
+          text-decoration: none;
+          font-size: 1.5em;
+          color: #ededed;
+          display: block;
+      }
+
+      .sidenav a:hover, .sidenav a:focus {
+          background-color: #3c2363;
+      }
+
+      .me_picture {
+        display: block;
+        float: left;
+        height: 12em;
+        width: 12em;
+        margin-left: 1em; /* Same as the width of the sidenav */
+      }
+
+      main, footer, hearder {
+        margin-left: 15em; /* Same as the width of the sidenav */
+        padding: 0em 1em;
+      }
+
+      footer {
+        margin-bottom: 0em;
+      }
+
+      #nav_button {
+        display: none;
+      }
+
+      #mobile_nav a, #mobile_nav ul, #mobile_nav li {
+        display: none;
+      }
+
+      #mobile_nav {
+        display: none;
+      }
+  }
+
+
+
+
+
+/* -------------------- Desktop Screen --------------------- */
+  @media all and (min-width:1026px) {  
+    /* ---------------------- Styles ----------------------- */
+      /*body, main { background-color:blue; }              /* For testing only */*/
+
+      p, dl, li {
+        font-size: 1em;           /* going from a large screen to a small screen, this "increases" the size of text as the screen size shrinks */
+      }
+  }
