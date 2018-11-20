@@ -139,6 +139,13 @@ footer {
   font-size: 1.5em;
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
 /*body, main { background-color:orange; }              /* For testing only */
 
 
