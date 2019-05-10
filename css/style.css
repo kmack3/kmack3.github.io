@@ -67,6 +67,10 @@ h3 {
   margin: 1em; /* Same as the width of the sidenav */
 }
 
+.icon {
+  margin-right: 1em;
+}
+
 /*                               Navigation                     */
 #mobile_nav ul {
     list-style-type: none;
