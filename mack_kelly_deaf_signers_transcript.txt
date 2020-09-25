@@ -1,0 +1,27 @@
+[slide 1]
+Hi everyone, my name is Kelly Mack and I am a second year PhD student at the University of Washington. Today I’d like to share with you work that I did at Snap Research with my colleagues Danielle Bragg, Meredith Ringel Morris, Maarten Bos, Isabelle Albi, and AMH. This work is about Social App Accessibility for Deaf signers. A screen-reader accessible version of these slides, and a full transcript of this presentation can be found on my website: kmack3.github.io
+
+[slide 2]
+Social media apps are now a ubiquitous part of technology that are designed to bring people together. However, social media platforms are often designed for specific user personas, and those personas do not often have a diverse range of abilities. Specifically, in this work we are discussing how social apps can be more accessible and supportive of people who are deaf and use sign languages, like American Sign Language (or ASL), to communicate.
+
+
+[slide 3]
+More specifically, we wanted to better understand two things: First: how and with whom do Deaf signers communicate on social media today? And second: what accessibility barriers do Deaf signers face in doing so.
+
+[slide 4]
+Now, I acknowledge that I am a hearing researcher new to ASL and the Deaf community, and therefore we sought to act as apprentices in this work. And so we reached out to the Deaf community to indicate direction of this research. To do so, we started by interviewing 7 Deaf signers about how they communicate with social apps, allowing them to discuss the benefits of these apps and the challenges they face. Our interviewees were all deaf and 6 preferred communicating in sign language. Based on what we learned from our interviewees, we created a survey that was completed by 65 Deaf signers. Here, we had 74% people with severe to profound hearing loss and 76% preferred some form of sign language for communication.
+
+[slide 5]
+While I believe we have many interesting findings, due to time I am going to share the two that are most interesting. First, I want to discuss communication patterns today. Our participants overwhelmingly preferred using sign language for communication in general, 6/7 of interviewees and 76% of survey respondents. Interviewees also brought up the importance of visual communication with GIFs and emojis because, as one person described “we use our facial expressions all the time for ASL”. Another interviewee commented: “I love using GIFs!!! GIFs are [a] way to express my wacky sense of humor to communicate with both D/HH and hearing community”. Below you can see two GIFs by Deaf artist Jessica Flores, one saying “I love you” and the other saying “what’s up” in sign language. Both have facial expressions, as facial expressions are a part of the language.
+
+[slide 6]
+Looking to the people who used English the most frequently, the most commonly cited reasons for its use were its speed, its ease of use, and the ability to share with DHH and hearing audiences. We hypothesized that the reason for this contradiction between preferences and actual behavior is that something is limiting Deaf signers in terms of speed and ease when they try to record and share videos with sign language.
+
+[slide 7]
+So, based on literature and our interviews, we created a list of 9 potential barriers to sharing in sign language for the survey, the top 5 of which are above. Some of these results relate to physical challenges in recording. For example, ASL uses both hands, signs can easily range from the top of the head to the waist, and, as facial expressions are integral to the language, one must be well lit in order to be understood. This helps explain, the third and fifth most popular issues which that cameras make it hard to sign and that it is difficult to prop up the phone to record signing. Similarly, these issues can contribute to the second most popular issue that recording/uploading a video takes to long. What we found most surprising is that the top challenge by far, faced by 89% of respondents, was that “it is hard to create captions of sign language for hearing friends”
+
+[slide 8]
+So what can researchers do? This work unveiled several avenues for researchers to pursue, including creating better algorithms for ASL to English captioning, improving compression algorithms so that they focus on compressing the background and keep the quality of the face and hands clear, and developing hardware solutions to support hands free recording on the go and better light the signer.
+
+[slide 9]
+Finally, I’d like to thank my colleagues who performed this work with me, Snap Inc. and Snap Research for providing the funding for this work. Thank you all for your attention, and I’ll take any questions now.
