@@ -107,7 +107,7 @@ def compute_returns(rewards, discount):
 	:param discount: discount factor
 	:return: returns (discounted rewards)
 	'''
-	returns = rewards.view()
+	returns = np.copy(rewards)
 	for i in range(len(returns) - 2, -1, -1):
 		returns[i] += discount * returns[i + 1]
 	
