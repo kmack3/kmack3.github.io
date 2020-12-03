@@ -107,7 +107,11 @@ def compute_returns(rewards, discount):
 	:param discount: discount factor
 	:return: returns (discounted rewards)
 	'''
-	returns = np.copy(rewards)
+	returns = np.zeros(len(rewards))
+	count = 0
+	for i in rewards:
+		returns[count] = i
+		count += 1
 	for i in range(len(returns) - 2, -1, -1):
 		returns[i] += discount * returns[i + 1]
 	
