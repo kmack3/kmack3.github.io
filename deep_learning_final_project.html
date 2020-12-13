@@ -1,0 +1,532 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+   <title>Kelly Mack</title>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="css/reset.css">
+   <link rel="stylesheet" href="css/style.css">
+   <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-mk6l{background-color:#000000;border-color:#000000;color:#ffffff;text-align:left;vertical-align:top}
+    .tg .tg-u3q6{background-color:#000000;border-color:#000000;color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
+    .tg .tg-73oq{border-color:#000000;text-align:left;vertical-align:top}
+    .tg .tg-cg1m{background-color:#cbcefb;border-color:#000000;text-align:left;vertical-align:top}
+    .tg .tg-8m24{background-color:#000000;text-align:left;vertical-align:top}
+    </style>
+    <style type="text/css">
+    .tg  {border-collapse:collapse;border-spacing:0;}
+    .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+      font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+    .tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+    .tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+    </style>
+   <script src="/js/jquery.min.js"></script>
+</head>
+<body>
+    <nav role="navigation" class="sidenav">
+          <a href="#abstract">Abstract</a>
+          <a href="#problem_statement"> Problem Statement </a>
+          <a href="#dataset"> Dataset </a>
+          <a href="#related_work">Related Work</a>
+          <a href="#method">Methodology</a>
+          <a href="#experiments">Experiments/ Validation</a>
+          <a href="#results">Results</a>
+          <a href="#conclusion">Conclusion</a>
+
+    </nav>
+	<header role="banner">
+		<h1 class="main_title"> FA20 Deep Learning Final Project </h1>
+	</header>
+    <main role="main">
+        <h2 id="abstract"> Abstract </h2>
+        <p>Human Activity Recognition (HAR) is the task of identifying a task that a human is performing given a set of data. Different versions of the problem use different data sources (e.g., videos, images, audio, accelerometer traces), though the goal remains the same. For this project, I specifically look at the task of HAR with traces of phone accelerometer and gyroscope data to detect a discrete set of classes. Several deep learning methods have been used to sovle such a problem, including convolutional neural networks (CNNs) and recurrent neural networks (RNNs).</p>
+
+        <p>My motivation for learning about HAR is with the goal of using transfer learning to train a model to recognize discrete activities that have few training samples. With models that can learn tasks with little training data, we allow individuals to train custom models to meet their own needs (without requiring them to spend days collecting data). Specifically, my PhD research revolves around the idea of aiding people who have chronic illnesses and/or disabilities in tracking data related to their symptoms and triggers.</p>
+
+        <p>With this project, I create a proof of concept that using transfer learning (via few-shot learning) allows a person with a chronic illness to track assistive technology use (use of a cane).</p>
+
+
+        <h2 id="problem_statement"> Problem Statement </h2>
+        <p>This project has two parts. First, I see if I can create a CNN based model that can achieve comparable accuracy with <a href="https://github.com/guillaume-chevalier/LSTM-Human-Activity-Recognition">an existing RNN model</a>. Second, I attempt to adapt my homemade CNN for transfer learning. In the end, I aim to have a model that can classify a new activity class with a small amount of training data.</p>
+
+        <h2 id="dataset"> Dataset </h2>
+        <p>I use two datasets, one for the model comparison part and another for the transfer learning part.</p>
+
+        <h3> UCI HAR Dataset </h3>
+        <p>For the model comparison portion of the project, I used the <a href="https://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones">UC Irvine "Human Activity Recognition Using Smartphones Data Set"</a>. Full details can be found at the link, but in short, this dataset contains the accelerometer and gyroscope data from smartphones worn at the waist of 30 participants. The participants each performed the six tasks and labels were manually assigne from video recordings of the data collection.</p>
+
+        <p><a href="https://www.youtube.com/watch?v=XOEN9W05_4A">The following video</a> shows the data collection process with one participant.</p>
+
+        <img source="images/har.png" width="50%" class="center" alt="a man standing with a phone attached to his waste, there is an overlay in the corner that shows the live accelerometer data. the man appears to be standing still, as there is little accelerometer movement."/>
+
+        <h3> Self-collected Dataset </h3>
+        <p>
+        For the transfer learning portion of the project, I collected my own data set. I used the Google Science Journal App to collect accelerometer and gyroscope data from a smartphone. I then collected two datasets, each for 20 minutes. First, I placed the phone in my pocket and walked around with my cane. This condition closely mirrors the data collection procedure for the UCI HAR dataset, which fixes the phone at the waste. In the second condition, I attached the smartphone to the top of my cane and proceeded to walk around. I expect that this placement might create more distinct accelerometer traces than the other UCI HAR tassk. I then programatically processed the datasets to convert the data into the same format as the UCI HAR Dataset. First, I normalized each dataset. Then, I segmented each into 128 sample segments, where each segment overlapped with 50% of the previous segment. In total, I was able to create XX 128-sample series from each dataset for a total of YY 128-sample series.
+        </p>
+
+        <img source="images/cane_collection.jpg" width="50%" class="center" alt="a hand holding a black cane. there is a smart phone taped to the top of the cane, near where the hand holds the cane."/>
+
+        <h2 id="related_work"> Related Work</h2>
+        <p>The RNN and CNN used in my project are both based off prior work. The RNN model uses an LSTM for prediction. This model was published in <a href="https://arxiv.org/abs/1708.08989">this arxiv paper (Zhao 2017)</a> and the coded I used is from the following <a href="https://github.com/guillaume-chevalier/LSTM-Human-Activity-Recognition">github repository</a>. I adapted the code to allow for transfer learning. The second model is based off the models described in these two sources (<a href="http://aqibsaeed.github.io/2016-11-04-human-activity-recognition-cnn/">Saeed 2016</a>, <a href="https://www-sciencedirect-com.offcampus.lib.washington.edu/science/article/pii/S1568494617305665">Ignatov 2018</a>). I developed this model from scratch, only following the same overall architecture as these sources sugest.</p>
+
+        <p> For the transfer learning portion, I used the ideas we learned in our 12/3 guest lecture in class to tune the CNN and used one of the successful strategies described in this paper for tuning the RNN model (<a href="https://arxiv.org/pdf/1701.03578.pdf">Yoon 2017</a>).
+
+        <h2 id="method"> Methodology </h2>
+        <p>The RNN I use uses two layres of LSTM cells and integrates bias terms into the hidden layers. The CNN I created is more complex, it uses two depthwise 2D convolutions, separated by a layer of max pooling. It's final layer is a fully connected layer followed by a softmax, which results in class predictions.</p>
+
+        <p>Metrics that I compare between the models include wall clock time taken to train, training and test loss, and training and test accuracy I can achieve (with hyperparameter tuning) for each model. They hyperparameters that I tuned included learning rate, weight decay, momentum, and number of channels/size of hidden layer. </p>
+
+        <p>To adjust the models to allow for transfer learning, I froze the weights in all layers besides the final layer at the end of the network. With the CNN, I also experimented with the number of fully connected layers with un-frozen weights during the few shot training.</p> 
+
+        <h2 id="experiments"> Experiments/Validation </h2>
+
+        <h3> Creating a CNN to match the RNN</h3>
+        <p> I used a relatively simple architecture for my CNN, a 2D depthwise convolution, followed by a maxpool layer, follwed by a 2D depthwise convolution, followed by a fully connected layer and finally a softmax to create predictions. With a small amount of hyperparameter tuning (shown below), I reached the same accuracy as the RNN.</p>
+
+        <h4> Accuracy and loss plots for the CNN and RNN </h4>
+
+        <p> RNN </p>
+
+        <div class="row">
+            <p> Acceleration (without gravity) X </p>
+          <div class="column">
+            <img src="images/dl_images/lstm_test_acc.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/lstm_test_loss.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/lstm_train_loss.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+        <p> CNN </p>
+
+        <div class="row2">
+            <p> Phone on-cane dataset </p>
+          <div class="columnhalf">
+            <img src="images/dl_images/my_orig_loss_better.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="columnhalf">
+            <img src="images/dl_images/my_orig_acc_better.png" alt="Forest" style="width:100%">
+          </div>
+        </div>
+
+        <h4> Confusion matrices for the RNN and CNN </h4>
+
+        <div class="row2">
+          <div class="columnhalf">
+            <p> RNN </p>
+            <img src="images/dl_images/LSTM_cm.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="columnhalf">
+            <p> CNN </p>
+            <img src="images/dl_images/my_orig_better_cm.png" alt="Snow" style="width:100%">
+          </div>
+        </div>
+
+        <h4> Time taken to train for the CNN and RNN </h4>
+
+        <table class="tg center">
+        <thead>
+          <tr>
+            <th class="tg-fymr">Model</th>
+            <th class="tg-fymr">Time Taken to Train</th>
+            <th class="tg-fymr">Final Test Accuracy</th>
+            <th class="tg-fymr">Final Training Loss</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tg-fymr">RNN</td>
+            <td class="tg-0pky">1265s (~21 min)<br></td>
+            <td class="tg-0pky">89.1%</td>
+            <td class="tg-0pky">0.604</td>
+          </tr>
+          <tr>
+            <td class="tg-fymr">CNN</td>
+            <td class="tg-0pky">307s (~5 min)</td>
+            <td class="tg-0pky">87.6%</td>
+            <td class="tg-0pky">0.317</td>
+          </tr>
+        </tbody>
+        </table>
+
+        <h4> Hyperparamter search for the CNN </h4>
+
+        <p> I performed a hyperpameter search for this model, varying learning rate, momentum, weight decay, and number of epochs. The table below shows the results and the purple rows show the final parameters I chose (learning_rate = .001, momentum = .9, weight_decay = .0005, epoch = 15). The plots for these hyperparameters are shown above.    </p>
+
+        <table class="tg center">
+            <thead>
+              <tr>
+                <th class="tg-u3q6">LR</th>
+                <th class="tg-u3q6">Test Accuracy</th>
+                <th class="tg-u3q6">Test Loss</th>
+                <th class="tg-u3q6">Train Loss</th>
+                <th class="tg-u3q6">Momentum</th>
+                <th class="tg-u3q6">Test Accuracy</th>
+                <th class="tg-u3q6">Test Loss</th>
+                <th class="tg-u3q6">Train Loss</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="tg-mk6l">.005</td>
+                <td class="tg-73oq">86.8%</td>
+                <td class="tg-73oq">0.513</td>
+                <td class="tg-73oq">0.122</td>
+                <td class="tg-mk6l">.8</td>
+                <td class="tg-73oq">87.5%</td>
+                <td class="tg-73oq">0.343</td>
+                <td class="tg-73oq">0.175</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.001</td>
+                <td class="tg-cg1m">87.4%</td>
+                <td class="tg-cg1m">0.335</td>
+                <td class="tg-cg1m">0.155</td>
+                <td class="tg-mk6l">.85</td>
+                <td class="tg-73oq">86.8%</td>
+                <td class="tg-73oq">0.366</td>
+                <td class="tg-73oq">0.191</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.0005</td>
+                <td class="tg-73oq">86.4%</td>
+                <td class="tg-73oq">0.391</td>
+                <td class="tg-73oq">0.178</td>
+                <td class="tg-mk6l">.9</td>
+                <td class="tg-73oq">86.6%</td>
+                <td class="tg-73oq">0.318</td>
+                <td class="tg-73oq">0.150</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.0001</td>
+                <td class="tg-73oq">83.5%</td>
+                <td class="tg-73oq">0.455</td>
+                <td class="tg-73oq">0.291</td>
+                <td class="tg-mk6l">.95</td>
+                <td class="tg-cg1m">88.8%</td>
+                <td class="tg-cg1m">0.306</td>
+                <td class="tg-cg1m">0.137</td>
+              </tr>
+              <tr>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+                <td class="tg-8m24"></td>
+              </tr>
+              <tr>
+                <td class="tg-u3q6">WD</td>
+                <td class="tg-u3q6">Test Accuracy</td>
+                <td class="tg-u3q6">Test Loss</td>
+                <td class="tg-u3q6">Train Loss</td>
+                <td class="tg-u3q6">Epoch</td>
+                <td class="tg-u3q6">Test Accuracy</td>
+                <td class="tg-u3q6">Test Loss</td>
+                <td class="tg-u3q6">Train Loss</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.01</td>
+                <td class="tg-73oq">84.2%</td>
+                <td class="tg-73oq">0.454</td>
+                <td class="tg-73oq">0.235</td>
+                <td class="tg-mk6l">15</td>
+                <td class="tg-cg1m">87.2%</td>
+                <td class="tg-cg1m">0.330</td>
+                <td class="tg-cg1m">0.199</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.005</td>
+                <td class="tg-73oq">85.5%</td>
+                <td class="tg-73oq">0.372</td>
+                <td class="tg-73oq">0.185</td>
+                <td class="tg-mk6l">20</td>
+                <td class="tg-73oq">85.9%</td>
+                <td class="tg-73oq">0.439</td>
+                <td class="tg-73oq">0.144</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.001</td>
+                <td class="tg-73oq">86.6%</td>
+                <td class="tg-73oq">0.339</td>
+                <td class="tg-73oq">0.172</td>
+                <td class="tg-mk6l">25</td>
+                <td class="tg-73oq">84.5%</td>
+                <td class="tg-73oq">0.476</td>
+                <td class="tg-73oq">0.139</td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.0005</td>
+                <td class="tg-cg1m">87.3%</td>
+                <td class="tg-cg1m">0.284</td>
+                <td class="tg-cg1m">0.164</td>
+                <td class="tg-mk6l"></td>
+                <td class="tg-73oq"></td>
+                <td class="tg-73oq"></td>
+                <td class="tg-73oq"></td>
+              </tr>
+              <tr>
+                <td class="tg-mk6l">.0001</td>
+                <td class="tg-73oq">87.6%</td>
+                <td class="tg-73oq">0.355</td>
+                <td class="tg-73oq">0.159</td>
+                <td class="tg-mk6l"></td>
+                <td class="tg-73oq"></td>
+                <td class="tg-73oq"></td>
+                <td class="tg-73oq"></td>
+              </tr>
+            </tbody>
+            </table>
+
+        In summary, I created a CNN based on reading prior work that achieves as good performance on the HAR task for the UCI HAR dataset as a published RNN based architecture and takes considerably less time to train.
+
+        <h3> Adaptign the CNN for transfer learning </h3>
+        <p> My strategy to adapt the CNN model to recognize my own datasets was to do a round of training on the original UCI HAR dataset, and then do another round of traing where I freeze the weights of the first three layers and allow updates to the final fully connected layer to allow for fine tuning. While I expected that the model may do a poor job classifying the new activity, I suspected the accuracy of predicting the other classes would remain somewhat stable. This was not the case as shown below. The overall model accuracy dropped to less than 25% (which though better than chance, is not great).</p>
+
+
+        <div class="row">
+            <p> Phone on-cane dataset </p>
+          <div class="column">
+            <img src="images/dl_images/cane_acc.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/can_loss.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_orig.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Phone on-waist dataset </p>
+          <div class="column">
+            <img src="images/dl_images/waist_acc.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_loss.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_orig.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+
+        <p> I did try a few modifications to see if I could improve the accuracy. First I adjusted the learning rate and weight decay to see if the weights were being changed too much in the fine tuning phase. Because the original model I tried was relatively accurately classifying cane as cane, but also everything else as cane, I tried increasing the weight decay and decreasing the learning rate in the fine tuning phase. </p>
+
+        <h4> Testing lower learning rate (.0005) in fine tuning</h4>
+        <div class="row">
+            <p> Phone on-cane dataset </p>
+          <div class="column">
+            <img src="images/dl_images/cane_acc_lr_0005.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/can_loss_lr_0005.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_lr_0005.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Phone on-waist dataset </p>
+          <div class="column">
+            <img src="images/dl_images/waist_acc_lr_0005.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_loss_lr_0005.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_lr0005.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+        <h4> Testing higher weight decay in fine tuning </h4>
+        <div class="row">
+            <p> Phone on-cane dataset </p>
+          <div class="column">
+            <img src="images/dl_images/cane_acc_wd001.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/can_loss_wd001.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_wd001.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Phone on-waist dataset </p>
+          <div class="column">
+            <img src="images/dl_images/" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_loss_wd001.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_wd001.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+        <p> I also tried adding another fully connected layer that could not be updated during fine tuning, but this only increased the training time considerably without seeing improvements in accuracy.</p>
+
+        <div class="row2">
+          <div class="columnhalf">
+            <p> Phone on-cane dataset </p>
+            <img src="images/dl_images/cane_2fc.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="columnhalf">
+            <p> Phone on-waist dataset </p>
+            <img src="images/dl_images/waist_2fc.png" alt="Forest" style="width:100%">
+          </div>
+        </div>
+
+        <h2 id="results"> Results </h2>
+        <p>The results above show that I did succeed at creating a CNN that matches the performance of a given RNN. In fact, my CNN reaches the same performance as the RNN in [METRICS]. On the other hand, I was not able to adapt my CNN model to recognize my own task. I spend the rest of this section hypothesizing as to why this may be.</p>
+
+        <h3> Hypothesis one: there's just not enough data</h3>
+        If too little data were the issue, I could generate more data with perturbtaions to the data or generating new data using a GAN <a href="https://medium.com/quick-code/understanding-few-shot-learning-in-machine-learning-bede251a0f67">(Garbade 2018)</a>. However, while the overall UCI HAR dataset had 10299 series to train and test on, my on-cane dataset had 3431 series total and my on-waist dataset had 3245. This numbers don't seem that small compared to the UCI HAR dataset, and if the problem were too little data for the cane data, I would expect to see good accuracy for all UCI HAR classes and poor performance on just the cane class. Therefore, I don't think this is the issue.
+
+        <h3> Hypothesis two: something is up with the data</h3>
+
+        As I created my own dataset, I suspect that the data collection/processing may be part of the issue. To investigate if the data I collected were considerably different than the UCI HAR dataset, I first visualized the 9 signals used in the model. Each row below shows the sensor data for a "walking" sample of the UCI HAR dataset, a sample from my walking with my cane with the phone in my pocket, and a sample from my walking with the phone attached to my cane.
+
+        <div class="row">
+            <p> Acceleration (without gravity) X </p>
+          <div class="column">
+            <img src="images/dl_images/acc_x.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_acc_x.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_acc_x.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Acceleration (without gravity) Y </p>
+          <div class="column">
+            <img src="images/dl_images/acc_y.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_acc_y.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_acc_y.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Acceleration (without gravity) Z </p>
+          <div class="column">
+            <img src="images/dl_images/acc_z.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_acc_z.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_acc_z.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+        <div class="row">
+            <p> Gyroscope X </p>
+          <div class="column">
+            <img src="images/dl_images/gyro_x.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_gyro_x.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_gyro_x.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Gyroscope Y </p>
+          <div class="column">
+            <img src="images/dl_images/gyro_y.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_gyro_y.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_gyro_y.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Gyroscope Z </p>
+          <div class="column">
+            <img src="images/dl_images/gyro_z.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_gyro_z.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_gyro_z.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Accelerometer (with gravity) X </p>
+          <div class="column">
+            <img src="images/dl_images/total_acc_x.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_total_acc_x.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_total_acc_x.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Accelerometer (with gravity) Y </p>
+          <div class="column">
+            <img src="images/dl_images/total_acc_y.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_total_acc_y.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_total_acc_y.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+        <div class="row">
+            <p> Accelerometer (with gravity) Z </p>
+          <div class="column">
+            <img src="images/dl_images/total_acc_z.png" alt="Snow" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/waist_data_total_acc_z.png" alt="Forest" style="width:100%">
+          </div>
+          <div class="column">
+            <img src="images/dl_images/cane_data_total_acc_z.png" alt="Mountains" style="width:100%">
+          </div>
+        </div>
+
+        <p> I had originally imagined that the phone being attached to the cane would be the easier of the two cane datasets to recognize, since the signal would likely be so distinct from the UCI HAR datapoints. However, especially looking at the gyroscope datapoints, it seems like the data may have been too different from the other datapoints that good features learned form the HAR dataset may not have applied to the on-cane dataset. I suspected, then, that the phone-on-waist dataset had a chance at being quite accurate, since just inspecting the two sets of signals, using the cane seemed to leave very similar traces to walking. The main difference was that there seemed to be longer distnaces between spikes in the y-acclerometer signal (likely because I have a slightly odd, slower gate from walking with a cane). However, this too lead to poor results (low accuracy and scattered confusion matrices).</p>
+
+        <p>I suppose that other data collection differences between my sets and the UCI HAR dataset could be to blame (e.g., perhaps their data was cleaner than mine, I turned around a few times and had to open doors when collecting my dataset which may have introduced inconsistencies), but this seems somewhat unlikely to me.</p>
+
+        <h3> Hypothsis two: I'm not integrating the data correctly/ a more sophisticated method than fine tuning is needed</h3>
+
+        <p> </p>
+
+        <h2 id="conclusion"> Conclusion </h2>
+        <p> In summary, I succeed in achieving 50% of my goals. While my CNN was clearly successful on classifying the UCI HAR dataset, it failed miserably when I intergrated my own data. Though the issue may have been with my data (or the fact that I did not have enough data), I suspect there may be an issue with how I implemented the fine tuning.</p>
+
+        <p>The full code and my self-collected dataset can be found at this github link. Note to TAs/Joe-- it would be cool to know how to fix this issue so I could use this in my research in the future :) My email is kmack3@cs.wash... if you have any ideas. Thank you!</p>
+    </main>
+
+    <footer role="contentinfo">
+    	<div class="foot_div">
+        </div>
+    </footer>
+
+</body>
+</html>
