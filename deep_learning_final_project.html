@@ -45,6 +45,11 @@
 		<h1 class="main_title"> FA20 Deep Learning Final Project </h1>
 	</header>
     <main role="main">
+
+        <video width="640" height="480" class="center" controls>
+          <source src="images/dl_images/final_pres.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+        </video>
         <h2 id="abstract"> Abstract </h2>
         <p>Human Activity Recognition (HAR) is the task of identifying a task that a human is performing given a set of data. Different versions of the problem use different data sources (e.g., videos, images, audio, accelerometer traces), though the goal remains the same. For this project, I specifically look at the task of HAR with traces of phone accelerometer and gyroscope data to detect a discrete set of classes. Several deep learning methods have been used to solve such a problem, including convolutional neural networks (CNNs) and recurrent neural networks (RNNs).</p>
 
@@ -64,14 +69,16 @@
 
         <p><a href="https://www.youtube.com/watch?v=XOEN9W05_4A">The following video</a> shows the data collection process with one participant.</p>
 
-        <img source="images/dl_images/har.png" width="50%" class="center" alt="a man standing with a phone attached to his waste, there is an overlay in the corner that shows the live accelerometer data. the man appears to be standing still, as there is little accelerometer movement."/>
+        <img src="images/dl_images/har.png" width="50%" class="center" alt="a man standing with a phone attached to his waste, there is an overlay in the corner that shows the live accelerometer data. the man appears to be standing still, as there is little accelerometer movement."/>
 
         <h3> Self-collected Dataset </h3>
         <p>
         For the transfer learning portion of the project, I collected my own data set. I used the Phyphox iPhone app to collect accelerometer and gyroscope data from a iPhone 5SE. I then collected two datasets, each for ~10 minutes. First, I placed the phone in my pocket and walked around with my cane. This condition closely mirrors the data collection procedure for the UCI HAR dataset, which fixes the phone at the waste. In the second condition, I attached the smartphone to the top of my cane and proceeded to walk around. I expect that this placement might create more distinct accelerometer traces than the other UCI HAR tasks. I then programatically processed the datasets to convert the data into the same format as the UCI HAR Dataset. First, I normalized each dataset. Then, I segmented each into 128 sample segments, where each segment overlapped with 50% of the previous segment. In total, I was able to create 7303 128-sample series from the on-cane dataset and 5629 128-sample series from the on-waist dataset, for a total of 12932 128-sample series.
         </p>
 
-        <img source="images/dl_images/cane_collection.jpg" width="50%" class="center" alt="a hand holding a black cane. there is a smart phone taped to the top of the cane, near where the hand holds the cane."/>
+        <div>
+            <img src="images/dl_images/cane_collection.jpg" width="25%" class="center" alt="a hand holding a black cane. there is a smart phone taped to the top of the cane, near where the hand holds the cane."/>
+        </div>
 
         <h2 id="related_work"> Related Work</h2>
         <p>The RNN and CNN used in my project are both based off prior work. The RNN model uses an LSTM for prediction. This model was published in <a href="https://arxiv.org/abs/1708.08989">this arxiv paper (Zhao 2017)</a> and the code I used is from the following <a href="https://github.com/guillaume-chevalier/LSTM-Human-Activity-Recognition">github repository</a>. I adapted the code to allow for transfer learning. The second model is based off the models described in these two sources (<a href="http://aqibsaeed.github.io/2016-11-04-human-activity-recognition-cnn/">Saeed 2016</a>, <a href="https://www-sciencedirect-com.offcampus.lib.washington.edu/science/article/pii/S1568494617305665">Ignatov 2018</a>). I developed this model from scratch, only following the same overall architecture as these sources suggest.</p>
@@ -88,7 +95,7 @@
         <h2 id="experiments"> Experiments/Validation </h2>
 
         <h3> Creating a CNN to match the RNN</h3>
-        <p> I used a relatively simple architecture for my CNN, a 2D depthwise convolution, followed by a maxpool layer, follwed by a 2D depthwise convolution, followed by a fully connected layer and finally a softmax to create predictions. With a small amount of hyperparameter tuning (shown below), I reached the same accuracy as the RNN.</p>
+        <p> I used a relatively simple architecture for my CNN, a 2D depthwise convolution, followed by a maxpool layer, followed by a 2D depthwise convolution, followed by a fully connected layer and finally a softmax to create predictions. With a small amount of hyperparameter tuning (shown below), I reached the same accuracy as the RNN.</p>
 
         <h4> Accuracy and loss plots for the CNN and RNN </h4>
 
@@ -532,7 +539,7 @@
         <h2 id="conclusion"> Conclusion </h2>
         <p> In summary, I succeeded in achieving one of my two goals. While my homemade CNN was clearly successful in classifying the UCI HAR dataset, it failed miserably when I intergrated my own data. Though the issue may have been with my data (or the fact that I did not have enough data), I suspect there may be an issue with how I implemented the fine tuning.</p>
 
-        <p>The full code and my self-collected dataset can be found at <a href="">this github link</a>. Note to TAs/Joe-- it would be cool to have an expert opinion on how to fix this issue so I could use this in my research in the future :) My email is kmack3@cs.wash... if you have any ideas. Thank you!</p>
+        <p>The full code and my self-collected dataset can be found at <a href="https://github.com/kmack3/deep_learning_final_project/blob/master/Final_Project.ipynb">this github link</a>. Note to TAs/Joe-- it would be cool to have an expert opinion on how to fix this issue so I could use this in my research in the future :) My email is kmack3@cs.wash... if you have any ideas. Thank you!</p>
     </main>
 
     <footer role="contentinfo">
