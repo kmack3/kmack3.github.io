@@ -515,7 +515,7 @@
 
         <h3> Hypothsis two: I'm not integrating the data correctly/ a more sophisticated method than fine tuning is needed</h3>
 
-        <p> </p>
+        <p>It seems like just fine tuning the weights of the final layer of a CNN is too naive to train a new class. There are several other methods that can be used to aid in tranfer learning/ few-shot learning including meta learning, multitaks learning, embedding learning, and more, which are summarized in research papers (<a href="https://arxiv.org/pdf/1904.05046.pdf">Wang 2020</a>, <a href="https://arxiv.org/pdf/1905.04398.pdf">Ravichandran 2020</a>). I think I would need to look at one of these more sophisticated methods in order to increase my accuracy.</p>
 
         <h2 id="conclusion"> Conclusion </h2>
         <p> In summary, I succeed in achieving 50% of my goals. While my CNN was clearly successful on classifying the UCI HAR dataset, it failed miserably when I intergrated my own data. Though the issue may have been with my data (or the fact that I did not have enough data), I suspect there may be an issue with how I implemented the fine tuning.</p>
