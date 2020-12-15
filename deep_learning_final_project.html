@@ -297,7 +297,7 @@
 
         <p>In summary, I created a CNN based on reading prior work that achieves as good performance on the HAR task for the UCI HAR dataset as a published RNN based architecture and takes considerably less time to train.</p>
 
-        <h3> Adaptign the CNN for transfer learning </h3>
+        <h3> Adapting the CNN for transfer learning </h3>
         <p> My strategy to adapt the CNN model to recognize my own datasets was to do a round of training on the original UCI HAR dataset, and then do another round of traing where I freeze the weights of the first three layers and allow updates to the final fully connected layer to allow for fine tuning. While I expected that the model may do a poor job classifying the new activity, I suspected the accuracy of predicting the other classes would remain somewhat stable. This was not the case as shown below. The overall model accuracy dropped to less than 25% (which though better than chance, is not great). The original hyperparameters were: (learning_rate = .001, momentum = .9, weight_decay = .0005, epoch = 20)</p>
 
 
@@ -532,9 +532,13 @@
 
         <p>I suppose that other data collection differences between my sets and the UCI HAR dataset could be to blame (e.g., perhaps their data was cleaner than mine, I turned around a few times and had to open doors when collecting my dataset which may have introduced inconsistencies), but this seems somewhat unlikely to me.</p>
 
-        <h3> Hypothesis two: I'm not integrating the data correctly/ a more sophisticated method than fine tuning is needed</h3>
+        <h3> Hypothesis three: I'm overfitting the cane training data</h3>
+        My losses honestly look quite strange and seems to look like I'm overfitting the data, but I feel like I should see improvements in the test loss with the adjustments I made to the learning rate and weight decay (which I did not see). Therefore, I think the issue is deeper than just overfitting.
+
+        <h3> Hypothesis four: I'm not integrating the data correctly/ a more sophisticated method than fine tuning is needed</h3>
 
         <p>It seems like just fine tuning the weights of the final layer of a CNN is too naive to train a new class. There are several other methods that can be used to aid in transfer learning/ few-shot learning including meta learning, multitask learning, embedding learning, and more, which are summarized in research papers (<a href="https://arxiv.org/pdf/1904.05046.pdf">Wang 2020</a>, <a href="https://arxiv.org/pdf/1905.04398.pdf">Ravichandran 2020</a>). I think I would need to look at one of these more sophisticated methods in order to increase my accuracy.</p>
+
 
         <h2 id="conclusion"> Conclusion </h2>
         <p> In summary, I succeeded in achieving one of my two goals. While my homemade CNN was clearly successful in classifying the UCI HAR dataset, it failed miserably when I intergrated my own data. Though the issue may have been with my data (or the fact that I did not have enough data), I suspect there may be an issue with how I implemented the fine tuning.</p>
