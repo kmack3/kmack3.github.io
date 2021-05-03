@@ -14,18 +14,18 @@
 .radar-chart.focus .area.focused {
   fill-opacity: 0.9;
 }
-.area.germany, .germany .circle {
+.area.bulbasaur, .bulbasaur .circle {
   fill: #FFD700;
   stroke: none;
 }
-.area.argentina, .argentina .circle {
+.area.charmander, .charmander .circle {
   fill: #ADD8E6;
   stroke: none;
 }
 
 </style>
 
-HEYO trying this out!
+HEYO trying this out! 1.0
 
 
 <div class="chart-container"></div>
@@ -40,23 +40,27 @@ RadarChart.draw(".chart-container", data);
 <script>
   var data = [
     {
-      className: 'germany', // optional, can be used for styling
+      className: 'bulbasaur', // optional, can be used for styling
       axes: [
-        {axis: "strength", value: 13, yOffset: 10},
-        {axis: "intelligence", value: 6},
-        {axis: "charisma", value: 5},  
-        {axis: "dexterity", value: 9},  
-        {axis: "luck", value: 2, xOffset: -20}
+        {axis: "speed", value: 45},
+        {axis: "defense", value: 49},
+        {axis: "attack", value: 49},  
+        {axis: "hp", value: 45},  
+        {axis: "capture rate", value: 45},
+        {axis: "sp_defense", value: 65}, 
+        {axis: "sp_attack", value: 65}, 
       ]
     },
     {
-      className: 'argentina',
+      className: 'charmander',
       axes: [
-        {axis: "strength", value: 6},
-        {axis: "intelligence", value: 7},
-        {axis: "charisma", value: 10},  
-        {axis: "dexterity", value: 13},  
-        {axis: "luck", value: 9}
+        {axis: "speed", value: 65},
+        {axis: "defense", value: 43},
+        {axis: "attack", value: 52},  
+        {axis: "hp", value: 39},  
+        {axis: "capture rate", value: 45},
+        {axis: "sp_defense", value: 60}, 
+        {axis: "sp_attack", value: 50}, 
       ]
     }
   ];
