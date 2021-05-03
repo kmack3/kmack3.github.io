@@ -120,8 +120,8 @@ chart.config({
 
 </script>
 
-## Conclusions
+<!-- ## Conclusions
 
 That's it!  If you followed along, you should now have a working interactive D3.js plot on your website so you can visualize your own graph or network data.  Thanks for reading.  Send me an email at rtylermclaughlin@gmail.com if you have any questions! 
 
-I'd like to thank the following bloggers for their helpful posts.  Without them I'd have struggled quite a bit longer: [Andrew Mehrmann](http://dkmehrmann.github.io/blog/2016/05/01/d3.html), [Eric Bickel](https://ehbick01.github.io/2017/05/09/embedding-d3-visuals-in-rmarkdown/), and [Tyler Clavelle](https://tclavelle.github.io/blog/blogdown_github/)
+I'd like to thank the following bloggers for their helpful posts.  Without them I'd have struggled quite a bit longer: [Andrew Mehrmann](http://dkmehrmann.github.io/blog/2016/05/01/d3.html), [Eric Bickel](https://ehbick01.github.io/2017/05/09/embedding-d3-visuals-in-rmarkdown/), and [Tyler Clavelle](https://tclavelle.github.io/blog/blogdown_github/) -->
