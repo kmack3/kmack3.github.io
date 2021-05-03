@@ -16,9 +16,7 @@
 
 </style>
 
-This is a starter guide for visualizing your own graph/network data in **D3** and loading it in **GitHub Pages**.
-
-The Javascript library [D3](https://d3js.org/) is known for making extremely nice looking, interactive data visualization apps that run in your web browser.  Some impressive examples include Mike Barry and Brian Card's visualizations of the [Boston subway system data](http://mbtaviz.github.io) and [an interactive neural network](https://playground.tensorflow.org) courtesy of Tensorflow.
+HEYO trying this out!
 
 Even though D3 has a [serious learning curve](https://medium.com/@enjalot/the-hitchhikers-guide-to-d3-js-a8552174733a), it is possible to make use of its nice interactive visualizations **without really knowing anything about JavaScript**.  As it turns out, it is really not that hard to get your own data in an interactive D3 graph!
 This post will walk you through how to visualize a graph aka network in D3 with your own data.
