@@ -71,18 +71,18 @@ RadarChart.draw(".chart-container", data);
   svg.append('g').classed('focus', 1).datum(data).call(chart);
 
   // draw many radars
-  var game = svg.selectAll('g.game').data(
-    [
-      data,
-      data,
-      data,
-      data
-    ]
-  );
-  game.enter().append('g').classed('game', 1);
-  game
-    .attr('transform', function(d, i) { return 'translate(150,600)'; })
-    .call(chart);
+  // var game = svg.selectAll('g.game').data(
+  //   [
+  //     data,
+  //     data,
+  //     data,
+  //     data
+  //   ]
+  // );
+  // game.enter().append('g').classed('game', 1);
+  // game
+  //   .attr('transform', function(d, i) { return 'translate(150,600)'; })
+  //   .call(chart);
 
 
 
