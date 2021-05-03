@@ -23,12 +23,21 @@
   stroke: none;
 }
 
+
+.center {
+margin: auto;
+width: 60%;
+border: 5px solid #FFFF00;
+padding: 10px;
+}
+
 </style>
 
 HEYO trying this out! 1.0
 
-
-<div class="chart-container"></div>
+<div class="center">
+  <div class="chart-container"></div>
+</div>
 <script>
 RadarChart.draw(".chart-container", data);
 </script>
