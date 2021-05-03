@@ -1,16 +1,6 @@
 <script src="//code.jquery.com/jquery.js"></script>
 <style>
 
-.node {
-  stroke: #fff;
-  stroke-width: 1.5px;
-}
-
-.link {
-  stroke: #999;
-  stroke-opacity: .6;
-}
-
 /* Radar css file */ 
 .radar-chart .level{stroke:grey;stroke-width:.5}.radar-chart .axis line{stroke:grey;stroke-width:1}.radar-chart .axis .legend{font-family:sans-serif;font-size:10px}.radar-chart .axis .legend.top{dy:1em}.radar-chart .axis .legend.left{text-anchor:start}.radar-chart .axis .legend.middle{text-anchor:middle}.radar-chart .axis .legend.right{text-anchor:end}.radar-chart .tooltip{font-family:sans-serif;font-size:13px;transition:opacity 200ms;opacity:0}.radar-chart .tooltip.visible{opacity:1}.radar-chart .area{stroke-width:2;fill-opacity:.5}.radar-chart.focus .area{fill-opacity:.1}.radar-chart.focus .area.focused{fill-opacity:.7}.radar-chart .circle{fill-opacity:.9}.radar-chart .area,.radar-chart .circle{transition:opacity 300ms,fill-opacity 200ms;opacity:1}.radar-chart .d3-enter,.radar-chart .d3-exit{opacity:0}
 
@@ -48,98 +38,9 @@ For this post and for my website, I wanted to learn to visualize my own network 
 RadarChart.draw(".chart-container", data);
 </script>
 
-<div id='d3div'></div>
-
-You are viewing a network of jazz scales.  The nodes represent different musical scales.  The edges connect any two scales that share 6 common tones.  The nodes are colored by scale type: blue nodes are Major scales.  This is a generalization of the [Circle of Fifths](https://en.wikipedia.org/wiki/Circle_of_fifths)  You can click and drag the nodes around and if you hover over the nodes, the name of the scale appears.
-
-## The pieces behind making this work
-
-First, take a look at the code from [this visualization](http://bl.ocks.org/mbostock/4062045)  in the [D3 gallery](https://github.com/mbostock/d3/wiki/Gallery).  
-
-Notice that there is also a `.json` file that contains characters from *Les Miserables*.  **JSON** is the standard format for input and output to D3.js.  So you will definitely need to have your graph data into the JSON format.   
-
-## JSON format for network data
-
-If you already have your data in the JSON format, you can skip ahead.  My graph data happened to be in a custom `.csv` format, so I ended up writing a python script to convert the `.csv` to a `.json` file.  
-Know that there are helpful JSON packages in **Python** and **R** that might work with standard formats.  Currently [igraph in R](http://kateto.net/networks-r-igraph) does not have an export JSON function. but [Cytoscape](http://cytoscape.org) and [NetworkX](https://networkx.github.io), a popular network library in Python, do support JSON output.  You may have to do something similar to what I did and write your own whatever-to-JSON conversion script, in which case, I'll walk you through the format.  
-
-This is what a minimal non-hierarchical graph in JSON format looks like:
-
-
-This JSON file contains all the information about the graph's links and nodes.   You can Specify what the color the nodes should be via the `"group"` argument.  In the `"links"` element, which refers to the edges in the graph, it specifies how the nodes are connected (as directed *source/target* edges) Lastly, the `"value"` argument will determine the thickness of the edge.  Very simple!
-
-Once your data is in the format like this, you will also need to create a folder called `/scripts/` in the root directory of your github.io repository and move your `.json` file there.
-
-## JavaScript 
-
-Now go to [Andrew Mehrmann's blog post](http://dkmehrmann.github.io/blog/2016/05/01/d3.html) and copy the JavaScript (which was derived from [Mike Bostock's original force-directed graph visualization](http://bl.ocks.org/mbostock/4062045) and modified for size autoscaling) and paste it directly into your markdown file.  Make sure you also copy the `style tag`.  Thanks, Andrew and Mike!  
-
-It doesn't really matter where you put the javascript or the style tag.  
-The location of the graph will be wherever you put the following `div tag` into your markdown file:
-
-
-
-I don't know why you need so many of the parent-directory symbols but I couldn't get it to work with any fewer.
-
-
-
-
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="./radar-chart.min.js"></script>
-<script>
-
-  var width = $("#d3div").width(),
-      height = 400;
-
-  var color = d3.scale.category20();
-
-  var force = d3.layout.force()
-      .charge(-62)
-      .linkDistance(80)
-      .size([width, height]);
-
-  var svg = d3.select("#d3div").append("svg")
-      .attr("width", width)
-      .attr("height", height);
-
-  d3.json("./jazz_scales_network_minCTs6.json", function(error, graph) {
-    if (error) throw error;
-
-    force
-        .nodes(graph.nodes)
-        .links(graph.links)
-        .start();
-
-    var link = svg.selectAll(".link")
-        .data(graph.links)
-      .enter().append("line")
-        .attr("class", "link")
-        .style("stroke-width", function(d) { return Math.sqrt(d.value); });
-
-    var node = svg.selectAll(".node")
-        .data(graph.nodes)
-      .enter().append("circle")
-        .attr("class", "node")
-        .attr("r", 5)
-        .style("fill", function(d) { return color(d.group); })
-        .call(force.drag);
-
-    node.append("title")
-        .text(function(d) { return d.name; });
-
-    force.on("tick", function() {
-      link.attr("x1", function(d) { return d.source.x; })
-          .attr("y1", function(d) { return d.source.y; })
-          .attr("x2", function(d) { return d.target.x; })
-          .attr("y2", function(d) { return d.target.y; });
-
-      node.attr("cx", function(d) { return d.x; })
-          .attr("cy", function(d) { return d.y; });
-    });
-  });
-</script>
-
 
 <script>
   var data = [
