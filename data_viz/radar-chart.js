@@ -297,9 +297,12 @@ var RadarChart = {
           .classed({circle: 1, 'd3-enter': 1})
           .on('mouseover', function(dd){
             d3.event.stopPropagation();
-            console.log("In mouseover func");
+            console.log("Dear god pls work");
             console.log(dd);
-            setTooltip(tooltip, cfg.tooltipFormatValue(dd[0].value));
+            console.log(dd[0].axis);
+            var better = getBetterPokemon(dd[0].axis, dd[0].value);
+            console.log(better)
+            setTooltip(tooltip, cfg.tooltipFormatValue(dd[0].axis));
             //container.classed('focus', 1);
             //container.select('.area.radar-chart-serie'+dd[1]).classed('focused', 1);
           })

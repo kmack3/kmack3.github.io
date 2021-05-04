@@ -37,12 +37,89 @@ HEYO trying this out! 1.0
 
 <div class="chart-container"></div>
 <script>
+pokemon = [
+]
+</script>
+<script>
 RadarChart.draw(".chart-container", data);
 </script>
 
 
 <script src="//d3js.org/d3.v3.min.js"></script>
 <script src="./radar-chart.js"></script>
+
+<script>
+  // fake data
+  var pokemon = [
+  {
+    className: 'bulbasaur', // optional, can be used for styling
+        axes: [
+          {axis: "speed", value: 45},
+          {axis: "defense", value: 49},
+          {axis: "attack", value: 49},  
+          {axis: "hp", value: 45},  
+          {axis: "capture rate", value: 45},
+          {axis: "sp_defense", value: 65}, 
+          {axis: "sp_attack", value: 65}, 
+        ]
+    },
+    {
+      className: 'charmander',
+      axes: [
+        {axis: "speed", value: 65},
+        {axis: "defense", value: 43},
+        {axis: "attack", value: 52},  
+        {axis: "hp", value: 39},  
+        {axis: "capture rate", value: 45},
+        {axis: "sp_defense", value: 60}, 
+        {axis: "sp_attack", value: 50}, 
+      ]
+    },
+    {
+      className: 'pretty cool pokemon',
+      axes: [
+        {axis: "speed", value: 90},
+        {axis: "defense", value: 100},
+        {axis: "attack", value: 100},  
+        {axis: "hp", value: 100},  
+        {axis: "capture rate", value: 100},
+        {axis: "sp_defense", value: 100}, 
+        {axis: "sp_attack", value: 100}, 
+      ]
+    },
+    {
+      className: 'mythical awesomeness',
+      axes: [
+        {axis: "speed", value: 100},
+        {axis: "defense", value: 100},
+        {axis: "attack", value: 100},  
+        {axis: "hp", value: 100},  
+        {axis: "capture rate", value: 100},
+        {axis: "sp_defense", value: 100}, 
+        {axis: "sp_attack", value: 100}, 
+      ]
+    },
+];
+
+function getBetterPokemon(filter_axis, better_than) {
+  var best_name = "";
+  var best_val = better_than;
+  for (i = 0; i < pokemon.length; i++) {
+    one_poke = pokemon[i]; // an object, e.g., charmander
+    for (j = 0; j < one_poke.axes.length; j++) {
+      if (one_poke.axes[j].axis == filter_axis) {
+        if (one_poke.axes[j].value > better_than) {
+          best_name = one_poke.className;
+          best_val = one_poke.axes[j].value;
+          return best_name;
+        }
+      }
+    }
+  }
+  return null;
+}
+
+</script>
 
 <script>
   var data = [
