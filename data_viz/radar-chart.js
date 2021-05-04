@@ -302,7 +302,7 @@ var RadarChart = {
             console.log(dd[0].axis);
             var better = getBetterPokemon(dd[0].axis, dd[0].value);
             console.log(better)
-            setTooltip(tooltip, cfg.tooltipFormatValue(dd[0].axis));
+            setTooltip(tooltip, cfg.tooltipFormatValue("Want better? Try " + better));
             //container.classed('focus', 1);
             //container.select('.area.radar-chart-serie'+dd[1]).classed('focused', 1);
           })

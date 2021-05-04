@@ -33,7 +33,7 @@ padding: 10px;
 
 </style>
 
-HEYO trying this out! 1.1
+HEYO trying this out! 1.2
 
 <div class="chart-container"></div>
 <script>
