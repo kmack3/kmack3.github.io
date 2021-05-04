@@ -35,16 +35,14 @@ padding: 10px;
 
 HEYO trying this out! 1.0
 
-<div class="center">
-  <div class="chart-container"></div>
-</div>
+<div class="chart-container"></div>
 <script>
 RadarChart.draw(".chart-container", data);
 </script>
 
 
 <script src="//d3js.org/d3.v3.min.js"></script>
-<script src="./radar-chart.min.js"></script>
+<script src="./radar-chart.js"></script>
 
 <script>
   var data = [
