@@ -1,0 +1,37 @@
+Hi everyone, today I’d like to present our research paper “what do we mean by “accessibility research” a literature survey of accessibility papers in CHI and ASSETS from 1994 to 2019.
+
+An accessible version of theses slides can be found on my website: kmack3.github.io
+
+To begin, let’s discuss why a large-scale analysis of accessibility research is valuable to the community,
+
+First, accessibility research is growing. It was the second most used keyword in CHI 2019
+
+Second, accessibility research, technology, and approaches to working with people with disabilities have changed dramatically since ASSETS was founded in 1994. In this year around 20 accessibility papers were published. More recently, about 95 accessibility papers were published across CHI and ASSETS in 2019. In such a period of growth, it’s important to identify and reflect upon prevailing research norms and trends
+
+Therefore, we chose to Perform a large-scale literature review to answer questions such as
+What communities are studied?
+What research methods are used?
+What issues are addressed?
+
+In accessibility research
+We gathered a dataset composed of all ASSETS papers and CHI papers that use one of the key terms “disability”, “accessibility”, “impair”, or  “assistive technology in the abstract, title, or author keywords.
+
+
+In total, we retrieved 215 CHI papers and 291 ASSETS paper for a dataset of 506 papers total.
+
+
+We performed thematic qualitative coding on the dataset which resulted in 10 themes Three of which we will go over today.
+To ensure our sample was complete, we manually examined all papers for false positives and sampled a random 200 papers to check for false negatives, of which there were only three. We also established an average IRR of .76 for qualitative codes, and manually and programmatically reviewed the fully coded dataset to ensure high quality data.
+
+
+Now, moving onto the results, with respect to who we study in the accessibility community– we see that we overwhelmingly focus on people who are blind or low vision; 44% of papers were this group, followed at 14% by people with motor impairments, whereas people with motor impairments are the most represented disability in the world. On the other end of the spectrum, we see that people with autism and IDD occurred much less frequently in 6% and 3% of papers respectively. These latter groups serve as areas of potential growth for future accessibility research.
+Further, we suggest that we consider how our research might include groups that are underrepresented in our sample, including people with multiple disabilities and the unique needs that arise from the intersection of being both autistic and blind, for instances. Multiple people with different disabilities interacting together, which as Hoffmann et al points out, is more common than we might think. People with chronic illness or mental health concerns, as these are becoming more prominent in our society. And finally, studying the intersection of other marginalized identities such as gender or race and disability.
+Moving onto what methods we use– 94% of papers included user studies and we saw a mix of quantitative and qualitative methods used, and often papers included a mixture of methods. The top methods were interviews and usability testing at about 42%. On the other hand, focus groups and case studies were used infrequently, in about 6% and 4% of papers respectively.
+We also looked at how many participants were engaged in each paper. The median number of people with disabilities or older adults per paper was 13, which though smaller, is close to the overall HCI median of 15-16 participants per paper, as Koeman reports. However, specific populations had considerably different medians such as deaf of hard of hearing people at 28 participants per paper and people with autism at 9 participants per paper.
+To reflect on these results, we saw use of relatively small sample sizes for several groups. But, surprisingly we saw little use of methods tailored for smaller sample sizes like case studies or single-subject experiments. Therefore, we ask the community and reviewers to consider whether broader human-computer interaction norms are appropriate for an accessibility paper given the community of focus, method used, and contribution made.
+In sum, accessibility research is growing! Now more than ever is an important time to reflect on the norms and trends in our research community to ensure that they are effective both in creating high quality research and reaffirming the rights and comfort of the people our research aims to serve.
+
+We hope that this work spurs these reflections and discussions within the community and serves as a guide to help onboard newcomers to the community
+If you want to learn more, please visit us for our late breaking work presentation by Dr. Lucy Lu Wang: “a bibliometric analysis of citation diversity in accessibility and HCI research”
+Our dataset, qualitative codes, and data analysis scripts are open source on github
+Finally, I would like to thank my fabulous collaborators Emma McDonnell, Dhruv Jain, Dr. Lucy Lu Wang, Dr. Jon Froehlich, and Dr. Leah Findlater, as well as our funding agencies. Thank you.
