@@ -77,6 +77,11 @@ h4 {
   margin-right: 1em;
 }
 
+#about_para {
+  padding-right: 1.5em;
+  text-align: justify;
+}
+
 .column {
   float: left;
   width: 28%;
@@ -101,6 +106,16 @@ h4 {
   content: "";
   clear: both;
   display: table;
+}
+
+
+.top_column {
+  width: 100%;
+}
+
+/* Clear floats after the columns */
+.top_row:after {
+  none;
 }
 
 /*                               Navigation                     */
@@ -220,6 +235,11 @@ footer {
         display: none;
       }
 
+      #about_para {
+        padding-right: 0em;
+      }
+
+
       .sidenav {
           height: 100%;
           width: 15em;
@@ -302,6 +322,18 @@ footer {
         width: 12em;
         margin: 1em; 
         margin-left: 2em;    
+      }
+
+      .top_column {
+        float: left;
+        width: 50%;
+      }
+
+      /* Clear floats after the columns */
+      .top_row:after {
+        content: "";
+        display: table;
+        clear: both;
       }
 
     .col-25 {width: 25%;}
